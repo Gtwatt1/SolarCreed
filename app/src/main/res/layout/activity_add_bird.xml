@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gtwatt.solarcreed.AddFeedActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/signupback"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginRight="-20dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/show_img"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Just a Quick Set up"
+            android:layout_below="@id/show_img"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/quick_summary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Birds"
+            android:layout_below="@id/quick_summary"
+            android:layout_marginTop="30dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/new_egg_entry"/>
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_type_new_egg"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/new_egg_entry"-->
+            <!--android:layout_marginTop="5dp">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/input_new_egg"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:hint="Type of Birds"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="@color/colorPrimary"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_number_damaged_egg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/new_egg_entry"
+            >
+
+            <EditText
+                android:id="@+id/input_number_feed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Number of Birds in Stock"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Feed"
+            android:layout_marginTop="12dp"
+            android:id="@+id/cost_feed"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/input_layout_number_damaged_egg"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_cost_purchase_bird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cost_feed"
+            android:layout_marginTop="5dp">
+
+            <EditText
+                android:id="@+id/input_cost_purchase_bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Current Amount  of Feed in Stock (Kg)"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_expected_sale"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/input_layout_cost_purchase_bird"-->
+            <!--android:layout_marginTop="5dp">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/input_expected_sale"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:hint="Expected sale Cost"-->
+                <!--android:textSize="14sp"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="TimeLine for  Birds"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:layout_marginTop="24dp"-->
+            <!--android:id="@+id/timeline_bird"-->
+            <!--android:textSize="16dp"-->
+            <!--android:layout_below="@+id/input_layout_expected_sale"/>-->
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_start_date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/timeline_bird"-->
+            <!--android:layout_marginTop="5dp">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/input_start_date"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:hint="Start Date"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="@color/colorPrimary"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_end_date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/input_layout_start_date"-->
+            <!--android:layout_marginTop="5dp">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/input_end_date"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:hint="End Date"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textColor="@color/colorPrimary"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/save_button"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/input_layout_cost_purchase_bird"
+            android:layout_centerHorizontal="true"
+            android:text="Save"/>
+    </RelativeLayout>
+
+</ScrollView>

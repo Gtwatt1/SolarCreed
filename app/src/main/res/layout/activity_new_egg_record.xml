@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gtwatt.solarcreed.NewEggRecordFrag">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Today's Entry"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/new_egg_entry"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_type_new_egg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_egg_entry">
+
+        <EditText
+            android:id="@+id/input_new_egg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Number of Egg Collected"
+            android:textColor="@color/colorPrimary"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_number_damaged_egg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_layout_type_new_egg">
+
+        <EditText
+            android:id="@+id/input_number_feed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Number of Damaged Egg"
+            android:textColor="@color/colorPrimary"/>
+    </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Expenses"
+            android:layout_below="@id/input_layout_number_damaged_egg"
+            android:layout_marginTop="10dp"
+            android:id="@+id/new_expense"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_type_new_total_incured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_expense">
+
+            <EditText
+                android:id="@+id/input_new_total_incured"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Total Amount Incured"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Sales"
+            android:layout_below="@+id/input_layout_type_new_total_incured"
+            android:layout_marginTop="10dp"
+            android:id="@+id/new_egg_sales"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_type_new_egg_crate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_egg_sales">
+
+            <EditText
+                android:id="@+id/input_new_egg_crate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Number of Eggs Crate"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_number_amount_collected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout_type_new_egg_crate">
+
+            <EditText
+                android:id="@+id/input_number_amount_collected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Amount Collected"
+                android:textColor="@color/colorPrimary"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_number_amount_collected"
+            android:layout_margin="20dp"
+            android:text="Continue"
+            android:textColor="#ffffff"
+            android:background="@color/colorAccent"/>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
