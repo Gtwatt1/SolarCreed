@@ -70,9 +70,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
         if(position ==0 && type ==1){
             holder.genType.setText("Feeds");
         }else if(position ==1 && type ==1){
-            holder.genType.setText("Birds");
+            holder.genType.setText("ShowAlert");
         }else if(position ==2 && type ==1){
-            holder.genType.setText("Eggs");
+            holder.genType.setText("Miscellanous");
+        }else if(position ==3 && type ==1){
+            holder.genType.setText("Total");
         }
 
     }

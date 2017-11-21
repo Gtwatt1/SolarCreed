@@ -1,20 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.gtwatt.solarcreed.HomeActivity"
-    tools:showIn="@layout/app_bar_home">
+    android:layout_height="match_parent">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:clipToPadding="false"
-        android:id="@+id/home_recycle_view">
 
-    </android.support.v7.widget.RecyclerView>
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/top_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:background="#ff44aacc"
+        android:elevation="2dp"
+        app:layout_heightPercent="49.5%"
+        app:layout_widthPercent="49.75%" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="3dp"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="General Record"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:id="@+id/first_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:textSize="15sp"
+                android:layout_alignParentTop="true"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/first_pic"
+                android:tint="#ffffff"
+                android:layout_below="@+id/first_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2302"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_below="@+id/first_pic"
+                android:id="@+id/first_title_count"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_centerHorizontal="true"
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"
+                android:layout_below="@+id/first_title_count"
+                android:id="@+id/first_add"
+                android:text="Add Record"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:background="@drawable/corner_radius_yellow"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/middle_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/top_left"
+        android:background="#ffffff"
+        app:layout_heightPercent="100%"
+        app:layout_widthPercent="0.5%" />
+    <LinearLayout
+        android:id="@+id/top_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/middle_top"
+        android:background="#ffe40000"
+        android:elevation="2dp"
+        app:layout_heightPercent="49.5%"
+        app:layout_widthPercent="49.75%" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="3dp"
+            android:background="@color/colorPrimaryShade">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:id="@+id/second_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentTop="true"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/second_pic"
+                android:tint="#ffffff"
+                android:layout_below="@+id/second_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2302"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_below="@+id/second_pic"
+                android:id="@+id/second_title_count"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_centerHorizontal="true"
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"
+                android:text="View Report"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:layout_below="@+id/second_title_count"
+                android:id="@+id/second_add"
+                android:background="@drawable/corner_radius_yellow"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/middle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/top_right"
+        android:background="#ffffff"
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="0.5%"></View>
+
+    <LinearLayout
+        android:id="@+id/left_bottom"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/middle"
+        app:layout_widthPercent="49.5%"
+        android:elevation="2dp"
+        app:layout_heightPercent="49.75%" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="3dp"
+            android:id="@+id/home_card_view"
+            android:background="@color/colorPrimaryShade">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vaccination"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:id="@+id/third_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentTop="true"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/third_pic"
+                android:tint="#ffffff"
+                android:layout_below="@+id/third_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2302"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_below="@+id/third_pic"
+                android:id="@+id/third_title_count"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_centerHorizontal="true"
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:text="Add Vaccination"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"
+                android:layout_below="@+id/third_title_count"
+                android:id="@+id/third_add"
+                android:background="@drawable/corner_radius_yellow"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/right_bottom"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/middle_top"
+        android:layout_below="@+id/middle"
+        android:background="#345621"
+        android:elevation="2dp"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="49.75%" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="3dp"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power Unit"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:id="@+id/fourth_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:layout_alignParentTop="true"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/fourth_pic"
+                android:tint="#ffffff"
+                android:layout_below="@+id/fourth_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2302"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_below="@+id/fourth_pic"
+                android:id="@+id/fourth_title_count"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_centerHorizontal="true"
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"
+                android:text="Buy Power"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:layout_below="@+id/fourth_title_count"
+                android:id="@+id/fourth_add"
+                android:background="@drawable/corner_radius_yellow"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.percent.PercentRelativeLayout>

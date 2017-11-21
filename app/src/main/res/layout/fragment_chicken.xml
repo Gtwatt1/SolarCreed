@@ -5,17 +5,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.gtwatt.solarcreed.GeneralRecord">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12th of Novermber 2017"
+        android:id="@+id/date_today"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"/>
+    <Spinner
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/poultryPen"
+        >
+
+    </Spinner>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/record_recycleview">
+        android:id="@+id/record_recycleview"
+        android:layout_marginTop="60dp">
 
     </android.support.v7.widget.RecyclerView>
 
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/chicken_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

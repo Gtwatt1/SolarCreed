@@ -6,15 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,15 +16,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Handler mHandler;
+
 
 
 
@@ -43,6 +38,8 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         mHandler = new Handler();
+        setAlarm();
+
 
 
         loadHomeFrgament();
@@ -54,6 +51,9 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerview = navigationView.getHeaderView(0);
+        TextView profileName = (TextView)headerview.findViewById(R.id.profile_name);
+        profileName.setText(new PrefManager(this).getFarmName());
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -114,16 +114,27 @@ public class HomeActivity extends AppCompatActivity
 
         Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
         notificationIntent.addCategory("android.intent.category.DEFAULT");
+        notificationIntent.putExtra("EverydayAlarm", 1);
+
 
         PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Calendar calendar = Calendar.getInstance();
         Calendar setcalendar = Calendar.getInstance();
+
         setcalendar.set(Calendar.HOUR_OF_DAY, 16);
         setcalendar.set(Calendar.MINUTE, 0);
         setcalendar.set(Calendar.SECOND, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,broadcast);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,setcalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES,broadcast);
+        Toast.makeText(this,"send", Toast.LENGTH_SHORT).show();
+
     }
+
+    HomeFragment homeFragment = new HomeFragment();
+    RecordFragment recordFragment = new RecordFragment();
+    VaccinationFragment vaccinationFragment = new VaccinationFragment();
+     ReportFragment generalReportFragment =    new ReportFragment();
+    ContactUSFragment contactUSFragment = new ContactUSFragment();
+
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -133,27 +144,30 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            fragment = new HomeFragment();
+            fragment = homeFragment;
 
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-             fragment = new RecordFragment();
+             fragment = recordFragment;
 
 
         } else if (id == R.id.nav_slideshow) {
-            fragment = new VaccinationFragment();
-
+                fragment = vaccinationFragment;
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-            fragment = new ReportFragment();
+            fragment = generalReportFragment;
+        } else if (id == R.id.nav_support) {
+            fragment = contactUSFragment;
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                 android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.frame, fragment);
-        fragmentTransaction.commitAllowingStateLoss();
+        fragmentTransaction.addToBackStack(null);
+
+        fragmentTransaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

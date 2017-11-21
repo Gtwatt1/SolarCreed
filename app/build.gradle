@@ -8,6 +8,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -38,8 +39,27 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'org.greenrobot:greendao:3.2.2'
+    compile 'com.android.support:percent:25.4.0'
+    compile 'com.google.android.gms:play-services:11.0.0'
+    compile 'com.github.satyan:sugar:1.5'
 
 
+
+
+
+
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.1'
+            }
+        }
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package com.gtwatt.solarcreed;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +30,6 @@ public class RecordFragment extends Fragment {
     private int[] tabIcons = {
             R.drawable.ic_menu_gallery,
             R.drawable.ic_menu_send,
-            R.drawable.ic_menu_share
     };
 
 
@@ -53,13 +54,18 @@ public class RecordFragment extends Fragment {
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new GeneralRecord(), "General");
-        adapter.addFragment(new ExpenseFragment(), "Expense");
-        viewPager.setAdapter(adapter);
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+//        adapter.addFragment(new GeneralRecord(), "General");
+//        adapter.addFragment(new ExpenseFragment(), "Expense");
+        viewPager.setAdapter(new RecordFragmentAdapter(getChildFragmentManager()));
+//        viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -69,7 +75,6 @@ public class RecordFragment extends Fragment {
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
-
 
 
         @Override
@@ -90,6 +95,40 @@ public class RecordFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+        }
+
+
+    }
+
+
+    public class RecordFragmentAdapter extends FragmentPagerAdapter {
+
+        public RecordFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new GeneralRecord();
+                case 1:
+                    return new ExpenseFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        public CharSequence getPageTitle(int position) {
+            if (position == 0){
+                return "General";
+            }else{
+                return "Expense";
+            }
         }
     }
 }

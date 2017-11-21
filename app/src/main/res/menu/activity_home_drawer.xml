@@ -24,6 +24,10 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Power Units" />
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Support" />
 
 
     </group>

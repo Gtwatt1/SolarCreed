@@ -28,8 +28,18 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }else {
-                    Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
-                    startActivity(i);
+                    if(prefManager.isDetailSaved()){
+                        Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else if (prefManager.isSignIn()){
+                        Intent i = new Intent(SplashScreenActivity.this, SetUpScreenActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        Intent i = new Intent(SplashScreenActivity.this, SignUpActivity.class);
+                        startActivity(i);
+                    }
 
                     // close this activity
                     finish();

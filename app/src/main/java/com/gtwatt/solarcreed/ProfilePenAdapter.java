@@ -15,10 +15,10 @@ import com.gtwatt.solarcreed.model.Vaccine;
 import java.util.List;
 
 /**
- * Created by Gtwatt on 11/2/17.
+ * Created by Gtwatt on 11/21/17.
  */
 
-public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.MyViewHolder> {
+public class ProfilePenAdapter extends RecyclerView.Adapter<ProfilePenAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<Vaccine> recordItems;
@@ -41,7 +41,7 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
     }
 
 
-    public VaccinationAdapter(Context mContext, List<Vaccine> homeItems) {
+    public ProfilePenAdapter(Context mContext, List<Vaccine> homeItems) {
         this.mContext = mContext;
         this.recordItems = homeItems;
     }
@@ -52,15 +52,15 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
     }
 
     @Override
-    public VaccinationAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProfilePenAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.vaccination_row, parent, false);
 
-        return new VaccinationAdapter.MyViewHolder(itemView);
+        return new ProfilePenAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final VaccinationAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final ProfilePenAdapter.MyViewHolder holder, int position) {
         final Vaccine vaccine = recordItems.get(position);
 //            Glide.with(mContext).load(getImage(homeItem.getHomePics())).into(holder.cardImg);
         holder.count.setText(vaccine.getNumberBirds() + " ShowAlert");

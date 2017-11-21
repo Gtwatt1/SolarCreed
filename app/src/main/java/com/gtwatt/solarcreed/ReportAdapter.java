@@ -5,8 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.gtwatt.solarcreed.model.Report;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
     private List<Report> reportList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView goodEgg, badEgg, mortality, sickBirds, usedFeed, newFeed;
+        public TextView goodEgg, badEgg, mortality, sickBirds, usedFeed, newFeed,dateReport;
 
         public MyViewHolder(View view) {
             super(view);
@@ -30,6 +31,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
             sickBirds = (TextView) view.findViewById(R.id.sick_bird_value);
             usedFeed = (TextView) view.findViewById(R.id.used_feed_value);
             newFeed = (TextView) view.findViewById(R.id.new_feed_value);
+            dateReport = (TextView)view.findViewById(R.id.date_value);
         }
     }
 
@@ -57,6 +59,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.MyViewHold
         holder.sickBirds.setText(report.getSickBirds()+" birds");
         holder.usedFeed.setText(report.getUsedFeed()+" kg");
         holder.newFeed.setText(report.getNewFeed()+ " kg");
+        holder.dateReport.setText(report.getDate());
     }
 
 

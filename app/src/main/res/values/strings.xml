@@ -14,7 +14,7 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
- x   <string name="slide_1_title">Hello Food!</string>
+   <string name="slide_1_title">Hello Food!</string>
     <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
 
     <string name="slide_2_title">Movie Tickets</string>
@@ -28,4 +28,14 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+
+    <string-array name="pens">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+        <item>Fifth</item>
+        <item>Sixth</item>
+        <item>Seventh</item>
+    </string-array>
 </resources>

@@ -1,8 +1,7 @@
 package com.gtwatt.solarcreed;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,10 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.gtwatt.solarcreed.R;
+import com.gtwatt.solarcreed.model.Expense;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +23,8 @@ public class ExpenseFragment extends Fragment {
     RecyclerView recyclerView;
     RecordAdapter adapter;
     List<RecordItem> recordItems;
+    FloatingActionButton fab;
+
 
     public ExpenseFragment() {
         // Required empty public constructor
@@ -30,17 +34,7 @@ public class ExpenseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        recordItems = new ArrayList<RecordItem>();
-//        reportList.add(new RecordItem("Collection","Total number of eggs collected today","4"));
-//        reportList.add(new RecordItem("Damage Eggs","Total number of damaged eggs collected today","4"));
-//        reportList.add(new RecordItem("Current Stock"," Total number of eggs","4"));
-//        reportList.add(new RecordItem("Today Expense"," amount of money spent today","4"));
-//        reportList.add(new RecordItem("Total Expense","Total amount of money spent","4"));
 
-
-        recordItems.add(new RecordItem("Expense on Feed","Total amount spent on feeds  today","4"));
-        recordItems.add(new RecordItem("Expense on Birds"," Total amount spent on birds ","4"));
-        recordItems.add(new RecordItem("Total expense ","Total expense today","4"));
 
 
 
@@ -49,11 +43,42 @@ public class ExpenseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_chicken, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.record_recycleview);
 
+        TextView today = (TextView)view.findViewById(R.id.date_today);
+        String dateString = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
+        today.setText(dateString);
 
+        recordItems = new ArrayList<RecordItem>();
+        Expense expense = new DataBaseHandler(getContext()).getExpense(dateString);
+        if(expense != null){
+
+            recordItems.add(new RecordItem("Expense on Feed","Total amount spent on feeds  today",expense.getFeedExpense()));
+            recordItems.add(new RecordItem("Expense on ShowAlert"," Total amount spent on birds ",expense.getBirdExpense()));
+            recordItems.add(new RecordItem("Miscellanous Expense ","Miscellaneous",expense.getMiscExpense()));
+            recordItems.add(new RecordItem("Total Expense  ","Total expense today",String.valueOf(Integer.parseInt(expense.getMiscExpense()) +Integer.parseInt(expense.getBirdExpense()) + Integer.parseInt(expense.getFeedExpense()))));
+        }else {
+            recordItems.add(new RecordItem("Expense on Feed","Total amount spent on feeds  today","0"));
+            recordItems.add(new RecordItem("Expense on ShowAlert"," Total amount spent on birds ","0"));
+            recordItems.add(new RecordItem("Expense on Egg ","Miscellaneous","0"));
+            recordItems.add(new RecordItem("Total Expense  ","Total expense today","0"));
+
+        }
+
+        fab = (FloatingActionButton)view.findViewById(R.id.chicken_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewExpenseFragment nextFrag= new NewExpenseFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, nextFrag)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         adapter = new RecordAdapter(getContext(), recordItems,1);
 

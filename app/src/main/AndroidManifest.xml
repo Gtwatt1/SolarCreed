@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gtwatt.solarcreed">
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:allowBackup="true"
@@ -9,29 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".SplashScreenActivity">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAib7Cw5ydRHZ0UqeGfNKFXfbMruo-5n6I"/>
+
+        <activity android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddFeedActivity" />
-        <activity android:name=".AddBirdActivity" />
+        <activity android:name=".SetUpScreenActivity" />
 
         <activity android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait"
+        android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".NewFeedRecordActivity" />
-        <activity android:name=".NewChickRecordActivity" />
         <activity android:name=".WelcomeActivity" />
 
         <receiver android:name=".AlarmReceiver"
-            android:enabled="false">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

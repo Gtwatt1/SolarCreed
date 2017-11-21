@@ -1,9 +1,6 @@
 package com.gtwatt.solarcreed;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.gtwatt.solarcreed.R;
+import com.gtwatt.solarcreed.model.Vaccine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +22,9 @@ public class VaccinationFragment extends Fragment {
 
     RecyclerView recyclerView;
     VaccinationAdapter adapter;
-    List<RecordItem> recordItems;
+    List<Vaccine> vaccines;
     FloatingActionButton fab;
+    TextView emptyView;
 
     public VaccinationFragment() {
         // Required empty public constructor
@@ -35,13 +34,23 @@ public class VaccinationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        recordItems = new ArrayList<RecordItem>();
-        recordItems.add(new RecordItem("Mortality","Total Number of Birds that died today","11/12/2017"));
-        recordItems.add(new RecordItem("Sick Birds","Total Number of Sick Birds","11/12/2017"));
-        recordItems.add(new RecordItem("Current Stock","Total Number of Birds Today","11/12/2017"));
-        recordItems.add(new RecordItem("Today's Expenses","Total amount of  money spent today","11/12/2017"));
-        recordItems.add(new RecordItem("Total Expense","Total amount of spent ","11/12/2017"));
+        vaccines = new ArrayList<Vaccine>();
+//        vaccines = new DataBaseHandler(getContext()).getAllVaccine();
+//        vaccines.add(new Vaccine("gsbs",3,"olas", "jokes"));
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vaccines = new DataBaseHandler(getContext()).getAllVaccine();
+        adapter.setAdapterData(vaccines);
+        if (vaccines.size() < 1){
+            emptyView.setVisibility(View.VISIBLE);
+        }else{
+            emptyView.setVisibility(View.GONE);
+        }
 
     }
 
@@ -51,6 +60,7 @@ public class VaccinationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_vaccination, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.vaccination_recycle_view);
+        emptyView = (TextView) view.findViewById(R.id.emptyText);
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +77,7 @@ public class VaccinationFragment extends Fragment {
 
 
 
-        adapter = new VaccinationAdapter(getContext(), recordItems);
+        adapter = new VaccinationAdapter(getContext(), vaccines);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -77,5 +87,6 @@ public class VaccinationFragment extends Fragment {
         return  view;
 
     }
+
 
 }

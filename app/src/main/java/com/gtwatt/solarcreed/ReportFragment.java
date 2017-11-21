@@ -1,10 +1,13 @@
 package com.gtwatt.solarcreed;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,47 +16,114 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gtwatt on 11/5/17.
+ * Created by Gtwatt on 11/6/17.
  */
 
-public class ReportFragment extends android.support.v4.app.Fragment {
-    RecyclerView recyclerView;
-    ReportAdapter adapter;
-    List<Report> reportList;
-    FloatingActionButton fab;
+public class ReportFragment extends Fragment {
 
-    public ReportFragment() {
-        // Required empty public constructor
-    }
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    private int[] tabIcons = {
+            R.drawable.ic_menu_gallery,
+            R.drawable.ic_menu_send,
+    };
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        reportList = new ArrayList<Report>();
-        reportList.add(new Report(1,300,50,2,12,30,20));
-        reportList.add(new Report(1,300,50,2,12,30,20));
-        reportList.add(new Report(1,300,50,2,12,30,20));
-        reportList.add(new Report(1,300,50,2,12,30,20));
-        reportList.add(new Report(1,300,50,2,12,30,20));
-        reportList.add(new Report(1,300,50,2,12,30,20));
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.report_fragment, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.report_recycleview);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_record, null);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        adapter = new ReportAdapter(getContext(), reportList);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
+        return view;
+    }
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridDecoration(1, 10, true, getContext()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-        return  view;
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+    }
 
+    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+//        adapter.addFragment(new GeneralRecord(), "General");
+//        adapter.addFragment(new ExpenseFragment(), "Expense");
+        viewPager.setAdapter(new RecordFragmentAdapter(getChildFragmentManager()));
+//        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(android.support.v4.app.Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+
+
+    }
+
+
+    public class RecordFragmentAdapter extends FragmentPagerAdapter {
+
+        public RecordFragmentAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new GeneralReportFragment();
+                case 1:
+                    return new ExpenseReportFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            if (position == 0){
+                return "General";
+            }else{
+                return "Expense";
+            }
+        }
     }
 }

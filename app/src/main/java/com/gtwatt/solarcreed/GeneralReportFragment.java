@@ -1,28 +1,32 @@
 package com.gtwatt.solarcreed;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.gtwatt.solarcreed.R;
+import com.gtwatt.solarcreed.model.Report;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Gtwatt on 11/5/17.
+ */
 
-public class FeedsFragment extends Fragment {
+public class GeneralReportFragment extends android.support.v4.app.Fragment {
     RecyclerView recyclerView;
-    RecordAdapter adapter;
-    List<RecordItem> recordItems;
+    ReportAdapter adapter;
+    List<Report> reportList;
+    FloatingActionButton fab;
+    TextView emptyView;
 
-    public FeedsFragment() {
+    public GeneralReportFragment() {
         // Required empty public constructor
     }
 
@@ -30,24 +34,25 @@ public class FeedsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        recordItems = new ArrayList<RecordItem>();
-        recordItems.add(new RecordItem("Used Bags","Total numbr of bags used total","4"));
-        recordItems.add(new RecordItem("New Feed","Total number of new feed","4"));
-        recordItems.add(new RecordItem("Current Stock","Total number of stock","4"));
-        recordItems.add(new RecordItem("Today Expense","Amount spent today","4"));
-        recordItems.add(new RecordItem("Total Expense","Total amount spent ","4"));
+        reportList = new ArrayList<Report>();
+        reportList = new DataBaseHandler(getContext()).getAllReport();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_chicken, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.record_recycleview);
+        View view =  inflater.inflate(R.layout.report_fragment, container, false);
+        reportList = new ArrayList<Report>();
+        reportList = new DataBaseHandler(getContext()).getAllReport();
+        recyclerView = (RecyclerView) view.findViewById(R.id.report_recycleview);
+        emptyView = (TextView)view.findViewById(R.id.emptyText);
+        if (reportList.size() < 1){
+            emptyView.setVisibility(View.VISIBLE);
+        }
 
-
-
-        adapter = new RecordAdapter(getContext(), recordItems, 1);
+        adapter = new ReportAdapter(getContext(), reportList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -57,5 +62,6 @@ public class FeedsFragment extends Fragment {
         return  view;
 
     }
+
 
 }
