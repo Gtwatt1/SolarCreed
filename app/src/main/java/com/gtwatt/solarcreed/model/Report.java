@@ -1,21 +1,26 @@
 package com.gtwatt.solarcreed.model;
 
+import com.orm.SugarRecord;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Gtwatt on 11/5/17.
  */
-public class Report {
+public class Report extends SugarRecord {
+
+
 
     public Report() {
     }
 
-    public Report(int id, int goodEgg, int badEgg, int mortality, int sickBirds, int usedFeed, int newFeed, int pen) {
+    public Report(int id, int goodEgg, int badEgg, int mortality, int sickBirds, int usedFeed, int newFeed, int pen, String penssid, int culling) {
         this.id = id;
         this.goodEgg = goodEgg;
         this.badEgg = badEgg;
@@ -26,6 +31,10 @@ public class Report {
         this.pen = pen;
         String dateString = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
         this.date = dateString;
+        this.ssid = UUID.randomUUID().toString();
+        this.penssid = penssid;
+        this.culling = culling;
+
     }
 
     public void setDate(String date) {
@@ -44,11 +53,6 @@ public class Report {
         this.pen = pen;
     }
 
-    public int getId() {
-
-
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -111,7 +115,15 @@ public class Report {
     int newFeed;
     String date;
     int pen;
+    String ssid;
+    String penssid;
+    int culling;
 
+    public String getCulling() {
+        return String.valueOf(culling);
+    }
 
-
+    public void setCulling(int culling) {
+        this.culling = culling;
+    }
 }

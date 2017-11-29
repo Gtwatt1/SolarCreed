@@ -5,12 +5,17 @@
 
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
+        <meta-data android:name="DATABASE" android:value="solar_creed1.db" />
+        <meta-data android:name="VERSION" android:value="2" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.gtwatt.solarcreed.model" />
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAib7Cw5ydRHZ0UqeGfNKFXfbMruo-5n6I"/>
 
         <activity android:name=".SplashScreenActivity"

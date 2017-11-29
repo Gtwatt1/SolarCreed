@@ -29,6 +29,29 @@
         android:layout_marginTop="10dp"
         android:gravity="left"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Pen"/>
+        <Spinner
+            android:layout_width="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/addRecordspinner"
+            />
+
+    </LinearLayout>
+
+
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_type_sick_bird"
         android:layout_width="match_parent"
@@ -59,6 +82,22 @@
             android:textSize="12sp"
             android:inputType="number"
             android:hint="Number of Dead Birds"
+            android:textColor="@color/colorPrimary"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_type_culling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/input_new_culling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="12sp"
+            android:hint="Number of culled birds"
             android:textColor="@color/colorPrimary"/>
     </android.support.design.widget.TextInputLayout>
 

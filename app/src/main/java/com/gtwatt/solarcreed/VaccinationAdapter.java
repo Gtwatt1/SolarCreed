@@ -63,7 +63,7 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
     public void onBindViewHolder(final VaccinationAdapter.MyViewHolder holder, int position) {
         final Vaccine vaccine = recordItems.get(position);
 //            Glide.with(mContext).load(getImage(homeItem.getHomePics())).into(holder.cardImg);
-        holder.count.setText(vaccine.getNumberBirds() + " ShowAlert");
+        holder.count.setText(vaccine.getNumberBirds() + " Birds");
         holder.type.setText(vaccine.getType());
         holder.details.setText(vaccine.getDetail());
         holder.time.setText(vaccine.getDate());

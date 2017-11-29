@@ -30,12 +30,21 @@
     <string name="play_again">Play Again</string>
 
     <string-array name="pens">
-        <item>First</item>
-        <item>Second</item>
-        <item>Third</item>
-        <item>Fourth</item>
-        <item>Fifth</item>
-        <item>Sixth</item>
-        <item>Seventh</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
+        <item>Pen 1</item>
     </string-array>
+
+    <string-array name="birds_type">
+        <item>Boiler</item>
+        <item>Layers</item>
+        <item>Turkey</item>
+        <item>Others</item>
+    </string-array>
+
+
 </resources>

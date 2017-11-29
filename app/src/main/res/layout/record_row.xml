@@ -16,6 +16,7 @@
         android:id="@+id/genType"
         android:textStyle="bold"
         android:textSize="14sp"
+        android:visibility="gone"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="10dp"/>
 <android.support.v7.widget.CardView

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.gtwatt.solarcreed.model.Report;
 import com.gtwatt.solarcreed.model.Vaccine;
 
 import java.util.ArrayList;
@@ -41,10 +42,11 @@ public class VaccinationFragment extends Fragment {
 
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        vaccines = new DataBaseHandler(getContext()).getAllVaccine();
+        vaccines = Vaccine.listAll(Vaccine.class);
         adapter.setAdapterData(vaccines);
         if (vaccines.size() < 1){
             emptyView.setVisibility(View.VISIBLE);

@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gtwatt.solarcreed.model.Expense;
+import com.gtwatt.solarcreed.model.Report;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gtwatt on 11/5/17.
@@ -41,8 +43,12 @@ public class NewExpenseFragment extends Fragment{
 
 
 
+        List<Expense> expenses = Expense.find(Expense.class, "date = ?", dateString);
+        Expense expense = null;
+        if(expenses.size() > 0){
+            expense = expenses.get(0);
+        }
 
-        Expense expense = new DataBaseHandler(getContext()).getExpense(dateString);
         if(expense != null){
             miscExpense.setText(expense.getMiscExpense());
             feedExpense.setText(expense.getFeedExpense());
@@ -56,7 +62,14 @@ public class NewExpenseFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 Expense expense = new Expense(Integer.parseInt(miscExpense.getText().toString()),Integer.parseInt(feedExpense.getText().toString()), Integer.parseInt(birdExpense.getText().toString()));
-                new DataBaseHandler(getContext()).addExpense(expense);
+                expense.save();
+                String dtStart = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
+                List<Expense> expenses = Expense.find(Expense.class, "date = ?", dtStart);
+                if(expenses.size() > 0){
+                    expense.update();
+                }else {
+                    expense.save();
+                }
             }
         });
 

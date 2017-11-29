@@ -35,7 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             notification = builder.setContentTitle("Do Update Your Poultry Records")
                     .setContentText("New Notification From SolarCreed")
                     .setTicker("")
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.drawable.app_icon)
                     .setContentIntent(pendingIntent).build();
         }else{
             notification = builder.setContentTitle("Get work done guys ")

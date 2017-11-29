@@ -12,16 +12,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.gtwatt.solarcreed.model.Pen;
+import com.gtwatt.solarcreed.model.Report;
 import com.gtwatt.solarcreed.model.Vaccine;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class VaccinationReminder extends Fragment {
 
@@ -37,6 +43,7 @@ public class VaccinationReminder extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_vaccination_reminder, container, false);
         final EditText vaccineType, numberBirds, vaccineDetails,vaccineDate, vaccineTime;
+        Spinner spin;
 
 
         vaccineDate = (EditText)view.findViewById(R.id.input_vaccine_select_date);
@@ -45,6 +52,20 @@ public class VaccinationReminder extends Fragment {
         vaccineType = (EditText)view.findViewById(R.id.input_vaccination_type);
         Button saveButton = (Button)view.findViewById(R.id.save_vaccine);
         vaccineTime = (EditText)view.findViewById(R.id.input_vaccine_select_time) ;
+        spin = (Spinner)view.findViewById(R.id.poultryRecord);
+
+        List<Pen> pens = Pen.listAll(Pen.class);
+        List<String> items =  new ArrayList<String>();
+
+
+        for (Pen pen : pens){
+            items.add(" " + pen.getPenNum() + "  " +pen.getName());
+        }
+
+        ArrayAdapter<String> spinadapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
+        spinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(spinadapter);
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,15 +73,10 @@ public class VaccinationReminder extends Fragment {
                 if (!(vaccineType.getText().toString().isEmpty()) && !(numberBirds.getText().toString().isEmpty()) && !(vaccineDetails.getText().toString().isEmpty()) && !(vaccineDate.getText().toString().isEmpty()) && !(vaccineTime.getText().toString().isEmpty())) {
                     String date = "";
                     String dtStart = vaccineDate.getText().toString() + " " + vaccineTime.getText().toString();
-//                    SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-//                    try {
-//                        date = format.parse(dtStart).toString();
-//                        System.out.println("Date ->" + date);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
+
                     Vaccine vaccine = new Vaccine(vaccineType.getText().toString(), Integer.parseInt(numberBirds.getText().toString()), dtStart, vaccineDetails.getText().toString());
-                    new DataBaseHandler(getContext()).addVaccine(vaccine);
+
+                        vaccine.save();
                 }else{
                     Toast.makeText(getContext(), "Please Fill in the details", Toast.LENGTH_SHORT).show();
                 }

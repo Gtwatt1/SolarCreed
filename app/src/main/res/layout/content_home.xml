@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2302"
+                android:text="0"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:layout_below="@+id/first_pic"
@@ -128,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2302"
+                android:text="0"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:layout_below="@+id/second_pic"
@@ -206,7 +206,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2302"
+                android:text="0"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:layout_below="@+id/third_pic"
@@ -280,7 +280,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2302"
+                android:text="0"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:layout_below="@+id/fourth_pic"

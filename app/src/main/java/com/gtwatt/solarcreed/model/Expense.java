@@ -1,27 +1,32 @@
 package com.gtwatt.solarcreed.model;
 
+import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Gtwatt on 11/6/17.
  */
 
-public class Expense {
+public class Expense extends SugarRecord{
 
     int feedExpense;
     int miscExpense;
     int birdExpense;
     int id;
     String date;
+    @Unique
+    String ssid;
+
+
 
     public Expense() {
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -33,6 +38,7 @@ public class Expense {
         this.birdExpense = birdExpense;
         String dateString = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
         this.date = dateString;
+        this.ssid = UUID.randomUUID().toString();
 
 
     }

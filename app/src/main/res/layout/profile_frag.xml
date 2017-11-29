@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/avatar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:id="@+id/profile_pic"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profile_pic"
+        android:text="Johnson Farm limited"
+        android:id="@+id/profile_name"
+        android:layout_marginTop="100dp"
+        android:layout_alignTop="@id/profile_pic"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profile_pic"
+        android:text="No pen added to farm yet, Add pens to farm "
+        android:id="@+id/emptyText"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pens"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="140dp"
+        android:textAllCaps="true"
+        android:textSize="16sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/record_recycleview"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="160dp">
 
     </android.support.v7.widget.RecyclerView>
 
-</LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/pen_add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="#FFFFFF"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</FrameLayout>

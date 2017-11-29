@@ -37,10 +37,9 @@ public class ExpenseReportFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.report_fragment, container, false);
         emptyView = (TextView)view.findViewById(R.id.emptyText);
-        expenses = new ArrayList<Expense>();
-        expenses = new DataBaseHandler(getContext()).getAllExpense();
+        expenses = Expense.listAll(Expense.class);
 
-        if (expenses.size() < 0){
+        if (expenses.size() < 1){
             emptyView.setVisibility(View.VISIBLE);
         }else{
             emptyView.setVisibility(View.GONE);

@@ -52,17 +52,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final RecordAdapter.MyViewHolder holder, int position) {
         final RecordItem recordItem = recordItems.get(position);
-//            Glide.with(mContext).load(getImage(homeItem.getHomePics())).into(holder.cardImg);
         holder.count.setText(recordItem.getCount());
         holder.type.setText(recordItem.getType());
         holder.details.setText(recordItem.getDetails());
-        if (position % 2 != 0 && type ==0){
-            holder.genType.setVisibility(View.GONE);
-
+        if (type == 0){
+            if(position == 0 || position == 3 || position == 5){
+                holder.genType.setVisibility(View.VISIBLE);
+            }
         }
-        if(position ==2 && type ==0){
+
+        if(position ==3 && type ==0){
             holder.genType.setText("Eggs");
-        }else if(position ==4 && type ==0){
+        }else if(position ==5 && type ==0){
             holder.genType.setText("Feeds");
 
         }

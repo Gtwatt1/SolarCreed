@@ -3,6 +3,7 @@ package com.gtwatt.solarcreed.model;
 import com.orm.SugarRecord;
 
 import java.text.DateFormat;
+import java.util.UUID;
 
 /**
  * Created by Gtwatt on 11/6/17.
@@ -15,6 +16,7 @@ public class Vaccine extends SugarRecord {
     String detail;
     int id;
     boolean completed;
+    String ssid;
 
 
     public Vaccine(String type, int numberBirds, String date, String detail) {
@@ -23,6 +25,8 @@ public class Vaccine extends SugarRecord {
         this.date = date;
         this.detail = detail;
         completed = false;
+        this.ssid = UUID.randomUUID().toString();
+
     }
 
     public boolean isCompleted() {
